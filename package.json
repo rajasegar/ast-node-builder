@@ -1,0 +1,26 @@
+{
+  "name": "ast-node-builder",
+  "version": "1.0.0",
+  "description": "AST Node Building api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajasegar/ast-node-builder.git"
+  },
+  "keywords": [
+    "ast",
+    "abstract",
+    "syntax",
+    "tree",
+    "javascript"
+  ],
+  "author": "Rajasegar Chandran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rajasegar/ast-node-builder/issues"
+  },
+  "homepage": "https://github.com/rajasegar/ast-node-builder#readme"
+}
