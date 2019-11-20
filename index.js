@@ -316,6 +316,10 @@ function returnStatement(node) {
       str = `j.returnStatement(${identifier(arg)})`;
       break;
 
+    case 'MemberExpression':
+      str = `j.returnStatement(${memberExpression(arg)})`;
+      break;
+
     default:
       console.log('returnStatement => ', arg.type); // eslint-disable-line
       break;
