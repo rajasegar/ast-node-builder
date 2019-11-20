@@ -747,7 +747,7 @@ function buildAST(ast) {
 }
 
 
-export default {
+module.exports = {
   arrowFunctionExpression,
   classDeclaration,
   exportDefaultDeclaration,
