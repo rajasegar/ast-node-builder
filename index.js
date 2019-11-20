@@ -67,6 +67,9 @@ function buildArgs(params) {
       case 'MemberExpression':
         return memberExpression(p);
 
+      case 'ArrayExpression':
+        return arrayExpression(p);
+
       default:  
         console.log('buildArgs => ', p.type); // eslint-disable-line
         return '';
