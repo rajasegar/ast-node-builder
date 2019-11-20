@@ -756,5 +756,8 @@ export default {
   ifStatement,
   importDeclaration,
   variableDeclaration,
-  buildAST
+  buildAST,
+  callExpression,
+  literal,
+  identifier
 }
