@@ -14,9 +14,9 @@ function callExpression(expression) {
 }
 
 function literal(node) {
-  //let value = typeof node.value === 'string'  ? `'${node.value}'` : node.value;
-  //return `j.literal(${value})`;
-  return `j.literal(${node.value || '""'})`;
+  let value = typeof node.value === 'string'  ? `'${node.value}'` : node.value;
+  return `j.literal(${value})`;
+  //return `j.literal(${node.value || '""'})`;
 }
 
 function identifier(node) {
@@ -212,6 +212,10 @@ function memberExpression(node) {
 
     case 'Literal':
       prop = literal(property);
+      break;
+
+    case 'CallExpression':
+      prop = callExpression(property);
       break;
 
     default:
