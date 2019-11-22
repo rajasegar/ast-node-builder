@@ -57,4 +57,23 @@ describe('Core builder api', function() {
     assert.strictEqual(code, output);
 
   });
+
+  it('should generate a switch case statement', function() {
+
+    const input = fs.readFileSync('test/fixtures/switch.input.js', 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync('test/fixtures/switch.output.js', 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
 });
