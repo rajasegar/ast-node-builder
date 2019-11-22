@@ -770,5 +770,6 @@ module.exports = {
   buildAST,
   callExpression,
   literal,
-  identifier
+  identifier,
+  memberExpression
 }
