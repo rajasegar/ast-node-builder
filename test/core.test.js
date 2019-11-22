@@ -20,18 +20,6 @@ const {
 
 
 const _code1 = `
-hello(1, 'world', true, a);
-this.hello(1, 'world', true, a);
-hello.world(1, 'foo', true, a);
-foo.bar.baz();
-foo.bar.bax.baz(1, 'foo', true, a);
-if(a === 1) {
-console.log('true');
-foo.bar();
-} else {
-console.log('false');
-foo.baz();
-}
 
 let a = {
 name: 'raja',
@@ -215,6 +203,72 @@ describe('Core builder api', function() {
 
     const code = print(outputAst, { quote: 'single'}).code;
     const output = fs.readFileSync('test/fixtures/importStatement.output.js', 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a call expression', function() {
+
+    const fixturePath = 'test/fixtures/callExpression';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a member expression', function() {
+
+    const fixturePath = 'test/fixtures/memberExpression';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a if statement', function() {
+
+    const fixturePath = 'test/fixtures/ifstatement';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
 
     assert.strictEqual(code, output);
 
