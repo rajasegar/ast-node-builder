@@ -4,14 +4,14 @@
 [![Coverage Status](https://coveralls.io/repos/github/rajasegar/ast-node-builder/badge.svg)](https://coveralls.io/github/rajasegar/ast-node-builder)
 [![Version](https://img.shields.io/npm/v/ast-node-builder.svg)](https://npmjs.org/package/ast-node-builder)
 
-[Demo](https://rajasegar.github.io/ast-builder/)
+Checkout the api in this [Playground](https://rajasegar.github.io/ast-builder/)
 
 Build your Abstract Syntax Trees (AST) directly from code. 
 You give the input in the form of code and get the builder API in [jscodeshift](https://github.com/facebook/jscodeshift).
 
 ## Usage
 ```js
-const { classDeclaration } = require('../index.js');
+const { classDeclaration } = require('ast-node-builder');
 const code = `
 class MyComponent extends ReactComponent {
   constructor(a, b) {
