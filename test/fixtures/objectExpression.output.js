@@ -3,3 +3,8 @@ let a = {
   age: 35,
   action: hello()
 };
+
+let {
+  name: name,
+  age: age
+} = a;

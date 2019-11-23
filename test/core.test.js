@@ -18,44 +18,6 @@ const {
   memberExpression
 } = require('../index.js');
 
-
-const _code1 = `
-
-
-
-module('Unit | Utility | codeshift-api', function() {
-
-  let a = 1;
-
-  test('it works', function(assert) {
-    let result = codeshiftApi();
-    assert.ok(result);
-  });
-});
-
-let { name, age } = a; 
-let a = [1,2,3];
-let [x,y,z] = a;
-this.a = a;
-this.b = 10;
-
-export default class MyComponent extends ReactComponent {
-  constructor(a,b) {
-    this.a = a;
-    this.b = b;
-  }
-
-  hello(x,y) {
-    console.log(x,y);
-  }
-}
-
-expect(find(cfPage.fieldPositionOne).textContent.trim()).to.be.contains(fieldOrder[0]);
-
-
-
-`;
-
 describe('Core builder api', function() {
   it('should generate a class declaration', function() {
 
@@ -353,6 +315,28 @@ describe('Core builder api', function() {
   it('should generate an array expression', function() {
 
     const fixturePath = 'test/fixtures/arrayExpression';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate an assignment expression', function() {
+
+    const fixturePath = 'test/fixtures/assignmentExpression';
     const inputFixture = `${fixturePath}.input.js`;
     const outputFixture = `${fixturePath}.output.js`;
     const input = fs.readFileSync(inputFixture, 'utf-8');
