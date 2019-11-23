@@ -21,27 +21,7 @@ const {
 
 const _code1 = `
 
-let a = {
-name: 'raja',
-age: 35,
-action: hello()
-};
 
-export default class MyComponent extends ReactComponent {}
-class MyComponent extends ReactComponent {
-  constructor(a,b) {
-    this.a = a;
-    this.b = b;
-  }
-
-  hello(x,y) {
-    console.log(x,y);
-  }
-}
-
-function init() {
-this._super(...arguments);
-}
 
 module('Unit | Utility | codeshift-api', function() {
 
@@ -52,12 +32,6 @@ module('Unit | Utility | codeshift-api', function() {
     assert.ok(result);
   });
 });
-
-let f = [1, "hello", true, 0, -1];
-let a = () => { console.log('hello') }
-let a = () => console.log('hello')
-let a = () => log('hello')
-let a = () => 2
 
 let { name, age } = a; 
 let a = [1,2,3];
@@ -77,39 +51,9 @@ export default class MyComponent extends ReactComponent {
 }
 
 expect(find(cfPage.fieldPositionOne).textContent.trim()).to.be.contains(fieldOrder[0]);
-switch(a) {
-  case "hello":
-    console.log("hello");
-    break;
-  default:
-    break;
-}
 
-try {
-  hello();
-} catch(ex) {
-  foo();
-} finally {
-  bar();
-}
-try {
-    throw new Error('oops');
-  }
-  catch (ex) {
-      console.error('inner', ex.message);
-      throw ex;
-    }
-  finally {
-    console.log('finally');
-}
-var text = "";
 
-for (var i = 0; i < 10; i++) {
-  if (i === 3) {
-    continue;
-  }
-  text = text + i;
-}
+
 `;
 
 describe('Core builder api', function() {
@@ -277,6 +221,138 @@ describe('Core builder api', function() {
   it('should generate a literal', function() {
 
     const fixturePath = 'test/fixtures/literal';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate an object expression', function() {
+
+    const fixturePath = 'test/fixtures/objectExpression';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate an export default declaration', function() {
+
+    const fixturePath = 'test/fixtures/exportDefaultDeclaration';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a function declaration', function() {
+
+    const fixturePath = 'test/fixtures/functionDeclaration';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a for statement', function() {
+
+    const fixturePath = 'test/fixtures/forStatement';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a try statement', function() {
+
+    const fixturePath = 'test/fixtures/tryStatement';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate an array expression', function() {
+
+    const fixturePath = 'test/fixtures/arrayExpression';
     const inputFixture = `${fixturePath}.input.js`;
     const outputFixture = `${fixturePath}.output.js`;
     const input = fs.readFileSync(inputFixture, 'utf-8');
