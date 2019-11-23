@@ -1,4 +1,5 @@
 hello(1, 'world', true, a);
+world([1, 2, 3]);
 
 module('Unit | Utility | codeshift-api', function() {
 

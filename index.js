@@ -95,6 +95,8 @@ function buildValue(node) {
       return memberExpression(node);
     case 'BinaryExpression':
       return binaryExpression(node);
+    case 'NewExpression':
+      return newExpression(node);
     default:
       console.log('buildValue => ', node.type); // eslint-disable-line
       return '';
