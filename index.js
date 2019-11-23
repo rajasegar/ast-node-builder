@@ -16,7 +16,6 @@ function callExpression(expression) {
 function literal(node) {
   let value = typeof node.value === 'string'  ? `'${node.value}'` : node.value;
   return `j.literal(${value})`;
-  //return `j.literal(${node.value || '""'})`;
 }
 
 function identifier(node) {
@@ -458,7 +457,7 @@ function ifStatement(node) {
   let condition;
   if(test.type === 'BinaryExpression') {
     let { operator, left, right } = test;
-    condition = `j.binaryExpression('${operator}', j.identifier('${left.name}'), j.literal('${right.value}'))`;
+    condition = `j.binaryExpression('${operator}', j.identifier('${left.name}'), ${literal(right)})`;
   } else if(test.type === 'Identifier') {
     condition = `j.identifier(${test.name})`;
   }
