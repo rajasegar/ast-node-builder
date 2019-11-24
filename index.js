@@ -77,6 +77,28 @@ function buildArgs(params) {
 
   return str.join(',');
 }
+
+function logicalExpression(node) {
+  let { operator, left, right } = node;
+  let str = '';
+  str =  `j.logicalExpression(
+  '${operator}',
+  ${buildValue(left)},
+  ${buildValue(right)},
+  )`;
+  return str;
+}
+
+function conditionalExpression(node) {
+  let str = '';
+  let { test, consequent, alternate } = node;
+  str = `j.conditionalExpression(
+  ${buildValue(test)},
+  ${buildValue(consequent)},
+  ${buildValue(alternate)},
+  )`;
+  return str;
+}
 function buildValue(node) {
   switch(node.type) {
     case "Literal":
@@ -97,6 +119,10 @@ function buildValue(node) {
       return binaryExpression(node);
     case 'NewExpression':
       return newExpression(node);
+    case 'LogicalExpression':
+      return logicalExpression(node);
+    case 'ConditionalExpression':
+      return conditionalExpression(node);
     default:
       console.log('buildValue => ', node.type); // eslint-disable-line
       return '';
@@ -710,6 +736,19 @@ function forStatement(node) {
   )`;
   return str;
 }
+
+function forInStatement(node) {
+  let str = '';
+  let { left, right, body, each } = node;
+  str =  `j.forInStatement(
+  ${variableDeclaration(left)},
+  ${identifier(right)},
+  ${blockStatement(body.body)},
+  ${each}
+  )`;
+  console.log(str);
+  return str;
+}
 function buildAST(ast) {
 
     // Build the jscodeshift api 
@@ -751,6 +790,9 @@ function buildAST(ast) {
 
         case 'ForStatement':
           return forStatement(node);
+
+        case 'ForInStatement':
+          return forInStatement(node);
 
         default:
           console.log('buildAST => ', node.type); // eslint-disable-line
