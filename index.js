@@ -811,10 +811,13 @@ function buildAST(ast) {
 
 module.exports = {
   arrowFunctionExpression,
+  assignmentExpression,
+  binaryExpression,
   classDeclaration,
   exportDefaultDeclaration,
   expressionStatement,
   functionDeclaration,
+  identifier,
   ifStatement,
   importDeclaration,
   variableDeclaration,
