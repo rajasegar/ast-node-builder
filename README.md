@@ -11,7 +11,8 @@ You give the input in the form of code and get the builder API in [jscodeshift](
 
 ## Usage
 ```js
-const { classDeclaration } = require('ast-node-builder');
+const { buildAST } = require('ast-node-builder');
+const { parse }  = require('recast');
 const code = `
 class MyComponent extends ReactComponent {
   constructor(a, b) {
@@ -25,7 +26,10 @@ class MyComponent extends ReactComponent {
 }
 `;
 
-console.log(classDeclaration(code));
+let ast = parse(code);
+
+let pseudoAst =  buildAST(ast);
+console.log(pseudoAst);
 ```
 
 ### Output
