@@ -491,4 +491,93 @@ describe('Core builder api', function() {
     assert.strictEqual(code, output);
 
   });
+
+  it('should generate a spread element', function() {
+
+    const fixturePath = 'test/fixtures/spreadElement';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate a for of statement', function() {
+
+    const fixturePath = 'test/fixtures/forOf';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate an yield expression', function() {
+
+    const fixturePath = 'test/fixtures/yieldExpression';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
+
+  it('should generate import declarations', function() {
+
+    const fixturePath = 'test/fixtures/importDeclaration';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    debugger
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
 });

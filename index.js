@@ -22,8 +22,8 @@ function identifier(node) {
   return `j.identifier('${node.name}')`;
 }
 
-function spreadElement(name) {
-  return `j.spreadElement(j.identifier('${name}'))`;
+function spreadElement(node) {
+  return `j.spreadElement(j.identifier('${node.argument.name}'))`;
 }
 
 function unaryExpression(node) {
@@ -39,6 +39,11 @@ function arrayExpression(node) {
         return literal(e);
       case 'UnaryExpression':
         return unaryExpression(e);
+      case 'SpreadElement':
+        return spreadElement(e);
+      default:
+        console.log('arrayExpression => ', e.type);
+        return '';
     }
   }).join(',');
 
@@ -55,7 +60,7 @@ function buildArgs(params) {
         return `j.identifier('${p.name}')`;
 
       case 'SpreadElement':
-        return spreadElement(p.argument.name);
+        return spreadElement(p);
 
       case 'FunctionExpression':
         return functionExpression(p);
@@ -194,12 +199,42 @@ function variableDeclaration(node) {
   //console.log(str);
   return str;
 }
+function importDefaultSpecifier(node) {
+  let { local}  = node;
+  return `j.importDefaultSpecifier(
+    ${identifier(local)}
+  )`;
+}
+
+function importNamespaceSpecifier(node) {
+  let { local}  = node;
+  return `j.importNamespaceSpecifier(
+    ${identifier(local)}
+  )`;
+}
+
+function importSpecifier(node) {
+  let { imported, local}  = node;
+  return `j.importSpecifier(
+  ${identifier(imported)},
+    ${identifier(local)}
+  )`;
+}
 function importDeclaration(node) {
   let { source, specifiers } = node;
-  let { imported, local}  = specifiers[0];
+  let specs = specifiers.map(s =>  { 
+    switch(s.type) {
+      case 'ImportSpecifier':
+        return importSpecifier(s)
+      case 'ImportDefaultSpecifier':
+        return importDefaultSpecifier(s)
+      case 'ImportNamespaceSpecifier':
+        return importNamespaceSpecifier(s)
+    }
+  }).join(',');
   let str = `j.importDeclaration(
-           [j.importSpecifier(j.identifier('${imported.name}'),j.identifier('${local.name}'))],
-    j.literal('${source.value}')
+           [${specs}],
+    ${literal(source)}
                   );`;
 
   return str;
@@ -300,6 +335,10 @@ function buildCallee(node) {
   return str;
 }
 
+function yieldExpression(node) {
+  let { argument, delegate } = node;
+  return `j.yieldExpression(${buildValue(argument)}, ${delegate})`;
+}
 function expressionStatement(node) {
   let { expression } = node;
   let { extra } = expression;
@@ -330,6 +369,10 @@ function expressionStatement(node) {
 
     case 'BinaryExpression':
       str = binaryExpression(expression);
+      break;
+
+    case 'YieldExpression':
+      str = `j.expressionStatement(${yieldExpression(expression)})`;
       break;
 
     default:
@@ -563,11 +606,13 @@ function exportDefaultDeclaration(node) {
 
 function functionDeclaration(node) {
   let str = '';
-  let { id, body, params } = node;
+  let { id, body, params, generator, expression } = node;
   str = `j.functionDeclaration(
   j.identifier('${id.name}'),
   [${buildArgs(params)}],
-  j.blockStatement([${buildBlock(body.body)}])
+  j.blockStatement([${buildBlock(body.body)}]),
+  ${generator},
+  ${expression}
   )`;
   return str;
 }
@@ -753,6 +798,17 @@ function forInStatement(node) {
   )`;
   return str;
 }
+function forOfStatement(node) {
+  let str = '';
+  let { left, right, body, each } = node;
+  str =  `j.forOfStatement(
+  ${variableDeclaration(left)},
+  ${identifier(right)},
+  ${blockStatement(body.body)},
+  ${each}
+  )`;
+  return str;
+}
 function buildAST(ast) {
 
     // Build the jscodeshift api 
@@ -797,6 +853,9 @@ function buildAST(ast) {
 
         case 'ForInStatement':
           return forInStatement(node);
+
+        case 'ForOfStatement':
+          return forOfStatement(node);
 
         default:
           console.log('buildAST => ', node.type); // eslint-disable-line
