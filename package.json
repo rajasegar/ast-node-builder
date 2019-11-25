@@ -7,7 +7,7 @@
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "deploy": "npm version patch && git push && git push --tags && npm publish",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "debug": "nyc mocha --forbid-only --inspect-brk \"test/**/*.test.js\""
+    "debug": "mocha --forbid-only --inspect-brk \"test/**/*.test.js\""
   },
   "repository": {
     "type": "git",

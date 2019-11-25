@@ -83,5 +83,14 @@ j.classDeclaration(
 
 ```
 
+## Debugging
+Place `debugger` statements in the code in appropriate places and run:
+
+```
+$ npm run debug
+```
+
+This will start mocha tests in debug mode and you can use Chrome Dev Tools to view the debugger.
+
 
 
