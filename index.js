@@ -69,6 +69,9 @@ function buildArgs(params) {
       case 'ArrayExpression':
         return arrayExpression(p);
 
+      case 'ArrowFunctionExpression':
+        return arrowFunctionExpression(p);
+
       default:  
         console.log('buildArgs => ', p.type); // eslint-disable-line
         return '';
@@ -158,23 +161,24 @@ function buildElements(elements) {
 function variableDeclarator(node) {
   let str = '';
   let { id, init}  = node;
+  let value = init ? buildValue(init) : null;
   switch(id.type) {
     case 'Identifier':
       str = `j.variableDeclarator(
       j.identifier('${id.name}'),
-        ${buildValue(init)}
+        ${value}
           )`;
       break;
     case 'ObjectPattern':
       str = `j.variableDeclarator(
       j.objectPattern([${buildProperties(id.properties)}]),
-        ${buildValue(init)}
+        ${value}
           )`;
       break;
     case 'ArrayPattern':
       str = `j.variableDeclarator(
       j.arrayPattern([${buildElements(id.elements)}]),
-        ${buildValue(init)}
+        ${value}
           )`;
       break;
   }
@@ -187,6 +191,7 @@ function variableDeclaration(node) {
   '${kind}',
       [${variableDeclarator(declarations[0])}])`;
            
+  //console.log(str);
   return str;
 }
 function importDeclaration(node) {
@@ -746,7 +751,6 @@ function forInStatement(node) {
   ${blockStatement(body.body)},
   ${each}
   )`;
-  console.log(str);
   return str;
 }
 function buildAST(ast) {
