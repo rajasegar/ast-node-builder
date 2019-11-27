@@ -107,6 +107,31 @@ function conditionalExpression(node) {
   )`;
   return str;
 }
+
+function templateElementValue(value) {
+  return `{cooked: "${value.cooked.replace('\n','\\n')}", raw: "${value.raw.replace('\n','\\n')}"}`;
+}
+
+function templateElement(node) {
+  let str = '';
+  let { value, tail } = node;
+  str = `j.templateElement(
+  ${templateElementValue(value)},
+  ${tail}
+  )`;
+  return str;
+}
+function templateLiteral(node) {
+  let str = '';
+  let { expressions, quasis } = node;
+  let _expressions = expressions.map(e => identifier(e)).join(',');
+  let _quasis = quasis.map(q => templateElement(q)).join(',');
+  str =   `j.templateLiteral(
+  [${_quasis}],
+  [${_expressions}]
+  )`;
+  return str;
+}
 function buildValue(node) {
   switch(node.type) {
     case "Literal":
@@ -131,6 +156,8 @@ function buildValue(node) {
       return logicalExpression(node);
     case 'ConditionalExpression':
       return conditionalExpression(node);
+    case 'TemplateLiteral':
+      return templateLiteral(node);
     default:
       console.log('buildValue => ', node.type); // eslint-disable-line
       return '';
@@ -339,6 +366,16 @@ function yieldExpression(node) {
   let { argument, delegate } = node;
   return `j.yieldExpression(${buildValue(argument)}, ${delegate})`;
 }
+function taggedTemplateExpression(node) {
+  let { tag, quasi } = node;
+  let str = '';
+  str = `j.taggedTemplateExpression(
+  ${identifier(tag)},
+  ${templateLiteral(quasi)}
+  )`;
+  return str;
+}
+
 function expressionStatement(node) {
   let { expression } = node;
   let { extra } = expression;
@@ -373,6 +410,14 @@ function expressionStatement(node) {
 
     case 'YieldExpression':
       str = `j.expressionStatement(${yieldExpression(expression)})`;
+      break;
+
+    case 'TemplateLiteral':
+      str = `j.expressionStatement(${templateLiteral(expression)})`;
+      break;
+
+    case 'TaggedTemplateExpression':
+      str = `j.expressionStatement(${taggedTemplateExpression(expression)})`;
       break;
 
     default:
