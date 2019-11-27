@@ -2,21 +2,7 @@ const assert = require('assert');
 const fs = require('fs');
 const { parse, print, types }  = require('recast');
 const j = types.builders; // eslint-disable-line
-const {
-  arrowFunctionExpression,
-  classDeclaration,
-  exportDefaultDeclaration,
-  expressionStatement,
-  functionDeclaration,
-  ifStatement,
-  importDeclaration,
-  variableDeclaration,
-  buildAST,
-  callExpression,
-  literal,
-  identifier,
-  memberExpression
-} = require('../index.js');
+const { buildAST } = require('../index.js');
 
 // NOTE: We are not testing the generated api directly here
 // Instead we are checking whether the generated api can create 
@@ -47,6 +33,7 @@ describe('Core builder api', function() {
     const input = fs.readFileSync('test/fixtures/arrowFunctionExpression.input.js', 'utf-8');
     let ast = parse(input);
 
+    debugger
     let pseudoAst =  buildAST(ast);
     const sampleCode = '';
     const outputAst = parse(sampleCode);  
