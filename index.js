@@ -1,4 +1,5 @@
 const {
+  blockStatement,
   classDeclaration,
   exportDefaultDeclaration,
   expressionStatement,
@@ -62,6 +63,9 @@ function buildAST(ast) {
 
         case 'ForOfStatement':
           return forOfStatement(node);
+
+        case 'BlockStatement':
+          return blockStatement(node);
 
         default:
           console.log('buildAST => ', node.type); // eslint-disable-line
