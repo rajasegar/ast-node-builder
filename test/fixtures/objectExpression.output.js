@@ -8,3 +8,11 @@ let {
   name: name,
   age: age
 } = a;
+
+Vue.component('some-comp', {
+  data: function() {
+    return {
+      foo: 'bar'
+    };
+  }
+});

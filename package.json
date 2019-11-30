@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/rajasegar/ast-node-builder#readme",
   "devDependencies": {
+    "@babel/parser": "^7.7.4",
     "coveralls": "^3.0.8",
     "eslint": "^6.7.1",
     "eslint-config-standard": "^14.1.0",
