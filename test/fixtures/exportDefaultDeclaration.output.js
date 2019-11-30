@@ -10,3 +10,11 @@ export default class MyComponent extends ReactComponent {
     console.log(x, y);
   }
 }
+
+export default {
+  data: function() {
+    return {
+      foo: 'bar'
+    };
+  }
+};
