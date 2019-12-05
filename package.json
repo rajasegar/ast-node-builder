@@ -1,6 +1,6 @@
 {
   "name": "ast-node-builder",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "AST Node Building api",
   "main": "index.js",
   "scripts": {
