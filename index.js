@@ -1,5 +1,6 @@
 const {
   blockStatement,
+  callExpression,
   classDeclaration,
   exportDefaultDeclaration,
   expressionStatement,
@@ -16,7 +17,7 @@ const {
   arrowFunctionExpression,
 } = require('./lib/core');
 
-function buildAST(ast) {
+function buildAST(ast, wrapExpression = true) {
 
     // Build the jscodeshift api 
     let _ast = ast.program.body.map(node => {
@@ -29,7 +30,7 @@ function buildAST(ast) {
           return importDeclaration(node);
 
         case 'ExpressionStatement':
-          return expressionStatement(node);
+          return wrapExpression ? expressionStatement(node) : callExpression(node.expression);
 
         case 'IfStatement':
           return ifStatement(node);
