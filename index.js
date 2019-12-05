@@ -1,10 +1,7 @@
+const core = require('./lib/core');
 const {
   blockStatement,
   callExpression,
-  memberExpression,
-  assignmentExpression,
-  identifier,
-  binaryExpression,
   classDeclaration,
   exportDefaultDeclaration,
   expressionStatement,
@@ -19,7 +16,7 @@ const {
   forInStatement,
   forOfStatement,
   arrowFunctionExpression,
-} = require('./lib/core');
+} = core;
 
 function buildAST(ast, wrapExpression = true) {
 
@@ -84,9 +81,5 @@ function buildAST(ast, wrapExpression = true) {
 
 module.exports = {
   buildAST,
-  callExpression, 
-  memberExpression,
-  assignmentExpression,
-  identifier,
-  binaryExpression
+  core
 }
