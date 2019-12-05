@@ -1,6 +1,10 @@
 const {
   blockStatement,
   callExpression,
+  memberExpression,
+  assignmentExpression,
+  identifier,
+  binaryExpression,
   classDeclaration,
   exportDefaultDeclaration,
   expressionStatement,
@@ -79,5 +83,10 @@ function buildAST(ast, wrapExpression = true) {
 }
 
 module.exports = {
-  buildAST
+  buildAST,
+  callExpression, 
+  memberExpression,
+  assignmentExpression,
+  identifier,
+  binaryExpression
 }
