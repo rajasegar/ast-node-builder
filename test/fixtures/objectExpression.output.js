@@ -16,3 +16,9 @@ Vue.component('some-comp', {
     };
   }
 });
+
+module.exports = {
+  components: {
+    'demo': demo
+  }
+};
