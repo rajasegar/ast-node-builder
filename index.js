@@ -18,6 +18,8 @@ const {
   arrowFunctionExpression,
 } = core;
 
+const jsx = require('./lib/jsx');
+
 function buildAST(ast, wrapExpression = true) {
 
     // Build the jscodeshift api 
@@ -68,6 +70,9 @@ function buildAST(ast, wrapExpression = true) {
 
         case 'BlockStatement':
           return blockStatement(node);
+
+        case 'JSXElement':
+          return jsx.element(node);
 
         default:
           console.log('buildAST => ', node.type); // eslint-disable-line
