@@ -4,6 +4,7 @@ const {
   callExpression,
   classDeclaration,
   exportDefaultDeclaration,
+  exportNamedDeclaration,
   expressionStatement,
   functionDeclaration,
   ifStatement,
@@ -41,6 +42,9 @@ function buildAST(ast, wrapExpression = true) {
 
         case 'ExportDefaultDeclaration':
           return exportDefaultDeclaration(node);
+
+        case 'ExportNamedDeclaration':
+          return exportNamedDeclaration(node);
 
         case 'ClassDeclaration':
           return classDeclaration(node);

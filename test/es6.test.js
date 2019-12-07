@@ -52,4 +52,26 @@ describe('ES6 builder api', function() {
     assert.strictEqual(code, output);
 
   });
+
+  it('should generate an export named declaration', function() {
+
+    const fixturePath = 'test/fixtures/exportNamedDeclaration';
+    const inputFixture = `${fixturePath}.input.js`;
+    const outputFixture = `${fixturePath}.output.js`;
+    const input = fs.readFileSync(inputFixture, 'utf-8');
+    let ast = parse(input);
+
+    let pseudoAst =  buildAST(ast);
+    const sampleCode = '';
+    const outputAst = parse(sampleCode);  
+
+    // Check the manifested api is working fine
+    pseudoAst.forEach(n => outputAst.program.body.push(eval(n)));
+
+    const code = print(outputAst, { quote: 'single'}).code;
+    const output = fs.readFileSync(outputFixture, 'utf-8');
+
+    assert.strictEqual(code, output);
+
+  });
 });
