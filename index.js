@@ -23,7 +23,8 @@ const jsx = require('./lib/jsx');
 function buildAST(ast, wrapExpression = true) {
 
     // Build the jscodeshift api 
-    let _ast = ast.program.body.map(node => {
+    let _body = ast && ast.program ? ast.program.body : [];
+    let _ast = _body.map(node => {
 
       switch(node.type) {
         case 'VariableDeclaration':
