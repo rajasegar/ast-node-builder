@@ -46,6 +46,9 @@ function buildAST(ast, wrapExpression = true) {
         case 'ExportNamedDeclaration':
           return exportNamedDeclaration(node);
 
+        case 'EmptyStatement':
+          return 'j.emptyStatement()';
+
         case 'ClassDeclaration':
           return classDeclaration(node);
 
