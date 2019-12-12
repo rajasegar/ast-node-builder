@@ -20,6 +20,7 @@ const {
 } = core;
 
 const jsx = require('./lib/jsx');
+const glimmer = require('./lib/glimmer-hbs');
 
 function buildAST(ast, wrapExpression = true) {
 
@@ -94,5 +95,6 @@ function buildAST(ast, wrapExpression = true) {
 
 module.exports = {
   buildAST,
-  core
+  core,
+  glimmer
 }
