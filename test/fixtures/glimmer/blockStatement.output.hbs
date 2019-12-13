@@ -1,0 +1,9 @@
+{{#bs-button hello="world"}}
+  Button
+{{/bs-button}}
+{{#bs-button onClick=(action "submit")}}
+  Button
+{{/bs-button}}
+{{#bs-button onChange=(action (mut buttonGroupValue)) as |bg|}}
+  Button
+{{/bs-button}}
