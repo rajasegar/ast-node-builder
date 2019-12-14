@@ -33,8 +33,6 @@ describe('Glimmer builder api', function() {
 
         // Check the manifested api is working fine
         pseudoAst.forEach(n => {
-          console.log(n);
-          debugger
           // ember-template-recast goes into an infinite loop
           // hence we need to check we are not sending undefined
           n && outputAst.body.push(eval(n))
