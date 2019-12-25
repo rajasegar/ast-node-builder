@@ -2,7 +2,7 @@ const assert = require('assert');
 const fs = require('fs');
 const { parse, print, types }  = require('recast');
 const j = types.builders; // eslint-disable-line
-const { buildAST } = require('../index.js');
+const { buildAST } = require('../lib/es6.js');
 
 // NOTE: We are not testing the generated api directly here
 // Instead we are checking whether the generated api can create 

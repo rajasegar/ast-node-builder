@@ -1,6 +1,6 @@
 let a = () => { console.log('hello') }
-let a = () => console.log('hello')
-let a = () => log('hello')
-let a = () => 2
+let b = () => console.log('hello')
+let c = () => log('hello')
+let d = () => 2
 hello(() => { console.log('hello') })
 hello(() => console.log('hello') )

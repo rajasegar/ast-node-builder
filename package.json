@@ -41,6 +41,7 @@
     "recast": "^0.18.5"
   },
   "dependencies": {
-    "ember-template-recast": "^3.3.0"
+    "ember-template-recast": "^3.3.0",
+    "typescript": "^3.7.4"
   }
 }
