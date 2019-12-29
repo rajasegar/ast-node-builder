@@ -36,6 +36,7 @@ describe('JSX builder api', function() {
         const input = fs.readFileSync(inputFixture, 'utf-8');
         let ast = parseWithBabel(input);
 
+        debugger;
         let pseudoAst =  buildAST(ast);
         const sampleCode = '';
         const outputAst = parseWithBabel(sampleCode);  

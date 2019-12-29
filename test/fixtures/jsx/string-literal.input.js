@@ -1,0 +1,1 @@
+<MyComponent message="hello world" />
