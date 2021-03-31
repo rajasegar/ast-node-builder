@@ -7,7 +7,7 @@
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "deploy-patch": "npm version patch && git push && git push --tags && npm publish",
     "deploy-minor": "npm version minor && git push && git push --tags && npm publish",
-    "coverage": "nyc report --reporter=text-lcov && shx cat ./coverage/lcov.info | coveralls --verbose",
+    "coverage": "nyc report --reporter=text-lcov | coveralls --verbose",
     "debug": "mocha --forbid-only --inspect-brk \"test/**/*.test.js\"",
     "lint": "eslint ."
   },
