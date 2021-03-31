@@ -2565,7 +2565,7 @@ packages:
       integrity: sha512-AX3Zw5iPruN5ie6xGRIDgqkT+ZhnRlZMLMHAs8tg7nRruy2Nb+i5o9bwghAogtM08q1dpr2LVoS8KSTMYpWXUw==
 specifiers:
   '@babel/parser': ^7.7.4
-  coveralls: ^3.0.8
+  coveralls: ^3.1.0
   ember-template-recast: ^3.3.0
   eslint: ^6.7.1
   eslint-config-standard: ^14.1.0
