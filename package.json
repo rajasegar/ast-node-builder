@@ -41,7 +41,7 @@
     "globby": "^10.0.1",
     "mocha": "^6.2.2",
     "nyc": "^15.1.0",
-    "recast": "^0.18.5",
+    "recast": "^0.20.5",
     "semantic-release": "^17.4.5"
   },
   "dependencies": {
