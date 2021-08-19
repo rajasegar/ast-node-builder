@@ -1,12 +1,11 @@
-name: Node CI
+name: Pull Requests
 
-on: [push]
+on:
+  - pull_request
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [12.x, 14.x]
@@ -27,9 +26,3 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Release
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      run: npm run semantic-release
