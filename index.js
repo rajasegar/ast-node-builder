@@ -1,5 +1,4 @@
-const core = require('./lib/core');
-const {
+import {
   blockStatement,
   callExpression,
   expressionStatement,
@@ -10,11 +9,11 @@ const {
   switchStatement,
   tryStatement,
   forStatement,
-} = core;
+} from './lib/core.js';
 
-const jsx = require('./lib/jsx');
-const glimmer = require('./lib/glimmer-hbs');
-const es6 = require('./lib/es6');
+import * as jsx from './lib/jsx.js';
+import * as glimmer from './lib/glimmer-hbs.js';
+import * as es6 from './lib/es6.js';
 
 function buildAST(ast, wrapExpression = true) {
 
@@ -63,9 +62,8 @@ function buildAST(ast, wrapExpression = true) {
     return _ast;
 }
 
-module.exports = {
+export {
   buildAST,
-  core,
   es6,
   glimmer,
   jsx
