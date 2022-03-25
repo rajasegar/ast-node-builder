@@ -26,10 +26,10 @@ jobs:
         npm test
         #npm run coverage
 
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    #- name: Coveralls
+    #  uses: coverallsapp/github-action@master
+    #  with:
+    #    github-token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Release
       env:
