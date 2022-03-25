@@ -46,7 +46,7 @@
     "globby": "^10.0.1",
     "jest": "^27.5.1",
     "recast": "^0.20.5",
-    "semantic-release": "^18.0.0"
+    "semantic-release": "^19.0.2"
   },
   "dependencies": {
     "ember-template-recast": "^6.0.0"
