@@ -3,6 +3,7 @@
   "version": "3.0.19",
   "description": "AST Node Building api",
   "main": "index.js",
+  "module": "index.js",
   "scripts": {
     "test": "nyc --reporter=lcov mocha --forbid-only \"test/**/*.test.js\"",
     "deploy-patch": "npm version patch && git push && git push --tags && npm publish",
