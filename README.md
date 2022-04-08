@@ -8,7 +8,7 @@
 
 Checkout the api in this [Playground](https://rajasegar.github.io/ast-builder/)
 
-Read the [introductory blog post](http://hangaroundtheweb.com/2019/12/ast-builder-building-ast-nodes-from-code/) to know more about the tool.
+Read the [introductory blog post](https://dev.to/rajasegar/building-ast-nodes-from-source-code-3p49) to know more about the tool.
 
 Build your Abstract Syntax Trees (AST) directly from code. 
 You give the input in the form of code and get the builder API in [jscodeshift](https://github.com/facebook/jscodeshift).
