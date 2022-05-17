@@ -1,10 +1,7 @@
 # ast-node-builder
 
-![Build and Deploy](https://github.com/rajasegar/ast-node-builder/workflows/Node%20CI/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/rajasegar/ast-node-builder/badge.svg?branch=refs/heads/master)](https://coveralls.io/github/rajasegar/ast-node-builder?branch=refs/heads/master)
-[![Version](https://img.shields.io/npm/v/ast-node-builder.svg)](https://npmjs.org/package/ast-node-builder)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+WARNING: This package is moved here
+https://github.com/rajasegar/ast-tooling/tree/master/packages/ast-node-builder
 
 Checkout the api in this [Playground](https://rajasegar.github.io/ast-builder/)
 
